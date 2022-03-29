@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "functional": "cpp",
+        "*.tcc": "cpp",
+        "iomanip": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp",
+        "sstream": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "memory": "cpp",
+        "random": "cpp",
+        "initializer_list": "cpp",
+        "regex": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}

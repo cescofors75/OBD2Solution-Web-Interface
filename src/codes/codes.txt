@@ -1,0 +1,1184 @@
+ // https://api.whatsapp.com/send?phone=+34618900003&text=Bienvenido%2C+estamos+listos+para+ayudarte+con+tus+ERRORES
+
+
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getidCar();
+}, 5000); //2000mSeconds update rate
+
+
+
+
+ function PostClearDTC(){
+
+              var xhttp = new XMLHttpRequest();
+              
+              
+
+               
+            xhttp.open("GET", "/ClearDTC", true);
+               xhttp.send();
+
+      }
+
+
+
+
+
+ const char PAGE_Error_2[] PROGMEM = R"=====(
+ target='_blank'; style='display: table; font-family: sans-serif; 
+ text-decoration: none; margin: 1em auto; color: #fff; 
+ font-size: 0.9em; padding: 1em 2em 1em 3.5em; border-radius: 2em; 
+ font-weight: bold; 
+ background: #25d366 url('https://tochat.be/click-to-chat-directory/css/whatsapp.svg') no-repeat 1.5em center; 
+ background-size: 1.6em;'>Contacto con tu Profesional</a>
+</div> 
+
+
+
+
+
+
+ <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://192.168.50.12/obd2style.css" type="text/css" media="all" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+
+void setup()
+{
+    Serial.begin(115200);
+    char msg[] = "57 50 30 5A 5A 5A 39 395A5453333932313234";   // Data (in hex), contains the word "this".
+    char result[17];
+    String S_msg=msg;
+    S_msg.replace(" ", "");
+    Serial.println(msg);
+    Serial.println(S_msg);
+    S_msg.toCharArray(msg,35);
+    Serial.println(msg);
+    textFromHexString(msg, result);
+    Serial.println(result);
+}
+
+void loop(){}
+
+void textFromHexString(char *hex, char *result)
+{
+    char temp[3];
+    int index = 0;
+    temp[2] = '\0';
+    while (hex[index])
+    {
+        strncpy(temp, &hex[index], 2);
+        *result = (char)strtol(temp, NULL, 16);     // If representations are hex
+        result++;
+        index += 2;
+    }
+    *result = '\0';
+}
+
+
+
+void getPartsAll()
+{
+
+  HTTPClient http;
+ 
+  http.useHTTP10(true);
+  String serverPath = serverName4 + idCar + "&getOEMparts";
+
+  Serial.println(serverPath);
+ 
+  http.begin(serverPath.c_str());
+  http.setTimeout(50000);
+  Serial.println("Fase 3 - SOLICITANDO CATALOGO  OEM-PARTS ");
+  int httpResponseCode = http.GET();
+  Serial.print("httpResponseCode:  ");
+  Serial.println(httpResponseCode);
+    
+  if (httpResponseCode > 0)
+  {
+     
+    SpiRamJsonDocument doc(393216);
+    
+    ReadBufferingStream bufferingStream(http.getStream(), 256);
+    DeserializationError error=deserializeJson(doc, bufferingStream);
+ //DeserializationError error = deserializeJson(doc, http.getStream());
+    
+   
+    Serial.println();
+    Serial.print("Memory: ");
+    Serial.println(doc.capacity());
+    Serial.print("Doc: ");
+    Serial.println(doc.memoryUsage());
+    Serial.println();
+    
+
+    if (error)
+    {
+      Serial.print(F("deserializeJson() failed: "));
+      Serial.println(error.f_str());
+      Conect_Json=false;
+      http.end();
+      return;
+    }else{
+    Serial.println("Fase 3.1 - GENERANDO CATALOGO  OEM-PARTS ");
+     Conect_Json=true;
+    }
+
+    for (JsonObject elem : doc.as<JsonArray>())
+    {
+      //Serial.println();
+      const char *group = elem["group"];         // "Brake system", "Brake system", "Air supply system", "Mixing", ...
+      const char *shortname = elem["shortname"]; // "Accessories", "Accessories", "Filter", "Sensor", ...
+      const char *name = elem["name"];           // "Accessories, brake pad", "Accessories, disc brake pads", "Air ...
+      const char *parts = elem["parts"];         // "TOYOTA|0440698000,VAG|J4206980000,VW|J4206980000", ...
+
+      /////////////////////////////////////////////////////////////////
+      Serial.println(String(group) + " // " + shortname + " // " + name + " :");
+      //////////////////////////////////////////////////////////////////
+
+      String mensaje = String(parts);
+      int PosicionComa;
+      String Parts_string = String(parts);
+      String S_group = String(group);
+      String S_shortname = String(shortname);
+      String S_name = String(name) + " - " + S_shortname;
+
+      ///////////////////////////////////////////////////
+      String S_name2 = elem["name"];
+
+      //Articulo_a_buscar="Air flow meter";
+      //Buscar_error();
+
+      //if (elem["name"] == Articulo_a_buscar)
+      //{
+        //Limpieza();
+
+        /////////////////////////////////////////////////
+        do
+        {
+          PosicionComa = mensaje.indexOf(','); //Buscamos la primera coma del mensaje.
+          if (PosicionComa != -1)
+          {
+            cutParts(mensaje.substring(0, PosicionComa));                    //En caso de que encontremos una ‘,’ mostramos el texto desde el principio hasta la posicion anterior a la ‘,’.
+            mensaje = mensaje.substring(PosicionComa + 1, mensaje.length()); //Ahora borramos el mensaje y decimos que es desde la posicion posterior a la ‘,’ hasta el final del string.
+          }
+          else
+          { //Entramos aqui si ya no quedan mas ‘,’
+            if (mensaje.length() > 0)
+              cutParts(mensaje); //Imprimimos el resto de texto que falta.
+            mensaje = parts;
+          }
+        } while ((PosicionComa > 0) && !(ref_euro)); //anular &&  !(ref_euro)); en caso querrer ver todas las referencias
+
+        ref_euro = false;
+        /////////////////////////////////////////////////////
+        String Parts_string2 = mensajeW;
+        mensajeW = "";
+
+        if (S_group == "Wheels")
+        {
+          Wheels += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Wheel suspension")
+        {
+          Wheel_suspension += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Suspension")
+        {
+          Suspension += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Brake system")
+        {
+          Brake_system += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Automatic transmission")
+        {
+          Automatic_transmission += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Belt drive")
+        {
+          Belt_drive += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Clutch system")
+        {
+          Clutch_system += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Cooling")
+        {
+          Cooling += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+
+        if (S_group == "Air supply system")
+        {
+          Air_supply_system += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Control devices")
+        {
+          Control_devices += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Engine Management")
+        {
+          Engine_Management += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Final drive")
+        {
+          Final_drive += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Lubrication")
+        {
+          Lubrication += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+
+        if (S_group == "Mixing")
+        {
+          Mixing += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Steering")
+        {
+          Steering += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+
+      //} // fin del If (Air flow meter)
+    }
+    Serial.println("Fase 3.2 - CATALOGO COMPLETADO  OEM-PARTS ");
+    Serial.println("Visualizacion de Datos / Catalogo: http://obd2.local");
+    Serial.println();
+  }
+
+  http.end();
+}
+
+
+
+table_PIDS {
+font-size: 4em; 
+font-family: sans-serif; 
+font-weight: bold;
+min-height: 400px;
+}
+
+.span {
+font-size: 4em; 
+font-family: sans-serif; 
+font-weight: bold;
+min-height: 800px;
+}
+
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+
+
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://192.168.50.12/obd2style.css" type="text/css" media="all" />
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+
+
+void Mirar_error(String codigo_error)
+{
+
+  HTTPClient http4;
+
+  String serverPath = serverName8 + codigo_error + "'";
+  http4.begin(serverPath.c_str());
+
+  // Send HTTP GET request
+  int httpResponseCode = http4.GET();
+
+  if (httpResponseCode > 0)
+  {
+
+    // Serial.println(httpResponseCode);
+    String payload = http4.getString();
+    //Serial.println(payload);
+     
+    StaticJsonDocument<1024> doc;
+
+    DeserializationError error = deserializeJson(doc, payload);
+
+    if (error)
+    {
+
+      Serial.print(F("deserializeJson() failed: "));
+      Serial.println(error.f_str());
+      return;
+    }
+
+    for (JsonObject elem : doc.as<JsonArray>())
+    {
+
+      const char *ERROR_DEF = elem["ERROR"];
+      const char *TIPO = elem["TIPO"];
+      Error = Error + "<br>" + String(TIPO) + " - " + String(ERROR_DEF) + "<br>";
+
+      if ((codigo_error == "P0100")||(codigo_error == "P0101")||(codigo_error == "P0102")||(codigo_error == "P0103")||(codigo_error == "P0104"))
+      {
+
+        Articulo_a_buscar = "Air flow meter";
+      }
+      if ((codigo_error == "P0105")||(codigo_error == "P0106")||(codigo_error == "P0107")||(codigo_error == "P0108")||(codigo_error == "P0109"))
+      {
+
+        Articulo_a_buscar = "Air pressure sensor, altitude correction";
+      }
+      if ((codigo_error == "P0110")||(codigo_error == "P0111")||(codigo_error == "P0112")||(codigo_error == "P0113")||(codigo_error == "P0114"))
+      {
+
+        Articulo_a_buscar = "Sensor, intake air temperature";
+      }
+      if ((codigo_error == "P0115")||(codigo_error == "P0116")||(codigo_error == "P0117")||(codigo_error == "P0118")||(codigo_error == "P0119"))
+      {
+
+        Articulo_a_buscar = "Sensor, coolant temperature";
+      }
+      if ((codigo_error == "P0120")||(codigo_error == "P0121")||(codigo_error == "P0122")||(codigo_error == "P0123")||(codigo_error == "P0124"))
+      {
+
+        Articulo_a_buscar = "Sensor, accelerator pedal position";
+      }
+
+
+    }
+  }
+  http4.end();
+}
+
+
+
+
+/////////////////////////////////////////
+void Mirar_error(String codigo_error)
+{
+
+  HTTPClient http4;
+
+  String serverPath = serverName8 + codigo_error + "'";
+  http4.begin(serverPath.c_str());
+
+  // Send HTTP GET request
+  int httpResponseCode = http4.GET();
+
+  if (httpResponseCode > 0)
+  {
+
+    // Serial.println(httpResponseCode);
+    String payload = http4.getString();
+    //Serial.println(payload);
+     
+    StaticJsonDocument<1024> doc;
+
+    DeserializationError error = deserializeJson(doc, payload);
+
+    if (error)
+    {
+
+      Serial.print(F("deserializeJson() failed: "));
+      Serial.println(error.f_str());
+      return;
+    }
+
+    for (JsonObject elem : doc.as<JsonArray>())
+    {
+
+      const char *ERROR_DEF = elem["ERROR"];
+      const char *TIPO = elem["TIPO"];
+      Error = Error + "<br>" + String(TIPO) + " - " + String(ERROR_DEF) + "<br>";
+      
+      //Articulo_a_buscar
+     
+
+
+    }
+    Buscar_solucion(codigo_error);
+    Serial.println(Articulo_a_buscar);
+  }
+  http4.end();
+}
+
+
+
+ <div class="info">
+    <div class="card3">
+        <br><br>
+ <a href="https://api.whatsapp.com/send?phone=34618900003&text="
+ 
+ target="_blank"; style=" font-family: sans-serif; 
+ text-decoration: none; margin: 1em auto; color: #fff; 
+ font-size: 0.9em; padding: 1em 2em 1em 3.5em; border-radius: 2em; 
+ font-weight: bold; 
+ background: #25d366 url('https://tochat.be/click-to-chat-directory/css/whatsapp.svg') no-repeat 1.5em center; 
+ background-size: 1.6em;">Contacto con tu Profesional</a>
+</div>
+
+</div>
+
+
+,\"stop\": \"['\n', ' Human:', ' AI:']\"
+
+
+
+
+
+
+
+
+</script>
+
+<script>
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getMake();
+}, 2000); //2000mSeconds update rate
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getInfo();
+}, 2000); //2000mSeconds update rate
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getidCar();
+}, 2000); //2000mSeconds update rate
+
+
+
+
+</script>
+
+
+
+
+
+/*void getParts()
+{
+
+  HTTPClient http;
+ 
+  //http.useHTTP10(true);
+  String serverPath = serverName4 + idCar + "&getOEMparts";
+
+  Serial.println(serverPath);
+ 
+  http.begin(serverPath.c_str());
+  http.setTimeout(50000);
+  Serial.println("Fase 3 - SOLICITANDO CATALOGO  OEM-PARTS ");
+
+  int httpResponseCode = http.GET();
+  Serial.print("httpResponseCode:  ");
+  Serial.println(httpResponseCode);
+    
+  if (httpResponseCode > 0)
+  {
+     /*
+    SpiRamJsonDocument doc(393216);
+    ReadBufferingStream bufferingStream(http.getStream(), 1024);
+    DeserializationError error=deserializeJson(doc, bufferingStream);
+*/
+ StaticJsonDocument<4096> doc;
+ DeserializationError error = deserializeJson(doc, http.getStream());
+    
+   
+    Serial.println();
+    Serial.print("Memory: ");
+    Serial.println(doc.capacity());
+    Serial.print("Doc: ");
+    Serial.println(doc.memoryUsage());
+    Serial.println();
+    
+
+    if (error)
+    {
+      Serial.print(F("deserializeJson() failed: "));
+      Serial.println(error.f_str());
+      Conect_Json=false;
+      http.end();
+      return;
+    }else{
+    Serial.println("Fase 3.1 - GENERANDO CATALOGO  OEM-PARTS ");
+     Conect_Json=true;
+    }
+
+    for (JsonObject elem : doc.as<JsonArray>())
+    {
+      //Serial.println();
+      const char *group = elem["group"];         // "Brake system", "Brake system", "Air supply system", "Mixing", ...
+      const char *shortname = elem["shortname"]; // "Accessories", "Accessories", "Filter", "Sensor", ...
+      const char *name = elem["name"];           // "Accessories, brake pad", "Accessories, disc brake pads", "Air ...
+      const char *parts = elem["parts"];         // "TOYOTA|0440698000,VAG|J4206980000,VW|J4206980000", ...
+
+      /////////////////////////////////////////////////////////////////
+      Serial.println(String(group) + " // " + shortname + " // " + name + " :");
+      //////////////////////////////////////////////////////////////////
+
+      String mensaje = String(parts);
+      int PosicionComa;
+      String Parts_string = String(parts);
+      String S_group = String(group);
+      String S_shortname = String(shortname);
+      String S_name = String(name) + " - " + S_shortname;
+
+      ///////////////////////////////////////////////////
+      String S_name2 = elem["name"];
+
+      //Articulo_a_buscar="Air flow meter";
+      //Buscar_error();
+      Serial.println(Articulo_a_buscar);
+      Serial.println(String(name));
+      //delay(1000);
+      if (elem["name"] == Articulo_a_buscar)
+      {
+       // Limpieza();
+
+        /////////////////////////////////////////////////
+        do
+        {
+          PosicionComa = mensaje.indexOf(','); //Buscamos la primera coma del mensaje.
+          if (PosicionComa != -1)
+          {
+            cutParts(mensaje.substring(0, PosicionComa));                    //En caso de que encontremos una ‘,’ mostramos el texto desde el principio hasta la posicion anterior a la ‘,’.
+            mensaje = mensaje.substring(PosicionComa + 1, mensaje.length()); //Ahora borramos el mensaje y decimos que es desde la posicion posterior a la ‘,’ hasta el final del string.
+          }
+          else
+          { //Entramos aqui si ya no quedan mas ‘,’
+            if (mensaje.length() > 0)
+              cutParts(mensaje); //Imprimimos el resto de texto que falta.
+            mensaje = parts;
+          }
+        } while ((PosicionComa > 0) && !(ref_euro)); //anular &&  !(ref_euro)); en caso querrer ver todas las referencias
+
+        ref_euro = false;
+        /////////////////////////////////////////////////////
+        String Parts_string2 = mensajeW;
+        mensajeW = "";
+
+        if (S_group == "Wheels")
+        {
+          Wheels += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Wheel suspension")
+        {
+          Wheel_suspension += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Suspension")
+        {
+          Suspension += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Brake system")
+        {
+          Brake_system += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Automatic transmission")
+        {
+          Automatic_transmission += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Belt drive")
+        {
+          Belt_drive += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Clutch system")
+        {
+          Clutch_system += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Cooling")
+        {
+          Cooling += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+
+        if (S_group == "Air supply system")
+        {
+          Air_supply_system += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Control devices")
+        {
+          Control_devices += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Engine Management")
+        {
+          Engine_Management += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Final drive")
+        {
+          Final_drive += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Lubrication")
+        {
+          Lubrication += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+
+        if (S_group == "Mixing")
+        {
+          Mixing += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Steering")
+        {
+          Steering += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+
+      } // fin del If (Air flow meter)
+    }
+
+
+
+   
+    Serial.println("Fase 3.2 - CATALOGO COMPLETADO  OEM-PARTS ");
+    Serial.println("Visualizacion de Datos / Catalogo: http://obd2.local");
+    Serial.println();
+  }
+
+  http.end();
+}
+
+
+
+
+void getPartsAll()
+{
+
+  HTTPClient http;
+ 
+  //http.useHTTP10(true);
+  String serverPath = serverName4 + idCar + "&getOEMparts";
+
+  //Serial.println(serverPath);
+ 
+  http.begin(serverPath.c_str());
+  http.setTimeout(50000);
+  Serial.println("Fase 3 - SOLICITANDO CATALOGO  OEM-PARTS ");
+  int httpResponseCode = http.GET();
+  Serial.print("httpResponseCode:  ");
+  Serial.println(httpResponseCode);
+    
+  if (httpResponseCode > 0)
+  {
+    /*
+    SpiRamJsonDocument doc(393216);
+    
+    ReadBufferingStream bufferingStream(http.getStream(), 256);
+    DeserializationError error=deserializeJson(doc, bufferingStream);*/
+ StaticJsonDocument<4096> doc;
+ DeserializationError error = deserializeJson(doc, http.getStream()); //OLD
+
+    
+   
+    Serial.println();
+    Serial.print("Memory: ");
+    Serial.println(doc.capacity());
+    Serial.print("Doc: ");
+    Serial.println(doc.memoryUsage());
+    Serial.println();
+    
+
+    if (error)
+    {
+      Serial.print(F("deserializeJson() failed: "));
+      Serial.println(error.f_str());
+      Conect_Json=false;
+      http.end();
+      return;
+    }else{
+    Serial.println("Fase 3.1 - GENERANDO CATALOGO  OEM-PARTS ");
+     Conect_Json=true;
+    }
+
+    for (JsonObject elem : doc.as<JsonArray>())
+    {
+      //Serial.println();
+      const char *group = elem["group"];         // "Brake system", "Brake system", "Air supply system", "Mixing", ...
+      const char *shortname = elem["shortname"]; // "Accessories", "Accessories", "Filter", "Sensor", ...
+      const char *name = elem["name"];           // "Accessories, brake pad", "Accessories, disc brake pads", "Air ...
+      const char *parts = elem["parts"];         // "TOYOTA|0440698000,VAG|J4206980000,VW|J4206980000", ...
+
+      /////////////////////////////////////////////////////////////////
+      Serial.println(String(group) + " // " + shortname + " // " + name + " :");
+      //////////////////////////////////////////////////////////////////
+
+      String mensaje = String(parts);
+      int PosicionComa;
+      String Parts_string = String(parts);
+      String S_group = String(group);
+      String S_shortname = String(shortname);
+      String S_name = String(name) + " - " + S_shortname;
+
+      ///////////////////////////////////////////////////
+      String S_name2 = elem["name"];
+
+      //Articulo_a_buscar="Air flow meter";
+      //Buscar_error();
+
+      //if (elem["name"] == Articulo_a_buscar)
+      //{
+        //Limpieza();
+
+        /////////////////////////////////////////////////
+        do
+        {
+          PosicionComa = mensaje.indexOf(','); //Buscamos la primera coma del mensaje.
+          if (PosicionComa != -1)
+          {
+            cutParts(mensaje.substring(0, PosicionComa));                    //En caso de que encontremos una ‘,’ mostramos el texto desde el principio hasta la posicion anterior a la ‘,’.
+            mensaje = mensaje.substring(PosicionComa + 1, mensaje.length()); //Ahora borramos el mensaje y decimos que es desde la posicion posterior a la ‘,’ hasta el final del string.
+          }
+          else
+          { //Entramos aqui si ya no quedan mas ‘,’
+            if (mensaje.length() > 0)
+              cutParts(mensaje); //Imprimimos el resto de texto que falta.
+            mensaje = parts;
+          }
+        } while ((PosicionComa > 0) && !(ref_euro)); //anular &&  !(ref_euro)); en caso querrer ver todas las referencias
+
+        ref_euro = false;
+        /////////////////////////////////////////////////////
+        String Parts_string2 = mensajeW;
+        mensajeW = "";
+
+        if (S_group == "Wheels")
+        {
+          Wheels += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Wheel suspension")
+        {
+          Wheel_suspension += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Suspension")
+        {
+          Suspension += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Brake system")
+        {
+          Brake_system += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Automatic transmission")
+        {
+          Automatic_transmission += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Belt drive")
+        {
+          Belt_drive += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Clutch system")
+        {
+          Clutch_system += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Cooling")
+        {
+          Cooling += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+
+        if (S_group == "Air supply system")
+        {
+          Air_supply_system += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Control devices")
+        {
+          Control_devices += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Engine Management")
+        {
+          Engine_Management += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Final drive")
+        {
+          Final_drive += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Lubrication")
+        {
+          Lubrication += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+
+        if (S_group == "Mixing")
+        {
+          Mixing += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Steering")
+        {
+          Steering += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+
+      //} // fin del If (Air flow meter)
+    }
+    Serial.println("Fase 3.2 - CATALOGO COMPLETADO  OEM-PARTS ");
+    Serial.println("Visualizacion de Datos / Catalogo: http://obd2.local");
+    Serial.println();
+  }
+
+  http.end();
+}
+*/
+
+
+
+
+//mensajeW = "";
+        /*
+        if (S_group == "Wheels")
+        {
+          Wheels += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Wheel suspension")
+        {
+          Wheel_suspension += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Suspension")
+        {
+          Suspension += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Brake system")
+        {
+          Brake_system += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Automatic transmission")
+        {
+          Automatic_transmission += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Belt drive")
+        {
+          Belt_drive += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Clutch system")
+        {
+          Clutch_system += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Cooling")
+        {
+          Cooling += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+
+        if (S_group == "Air supply system")
+        {
+          Air_supply_system += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Control devices")
+        {
+          Control_devices += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Engine Management")
+        {
+          Engine_Management += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Final drive")
+        {
+          Final_drive += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Lubrication")
+        {
+          Lubrication += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+
+        if (S_group == "Mixing")
+        {
+          Mixing += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }
+        if (S_group == "Steering")
+        {
+          Steering += "<tr><td>" + S_name + "</td><td>" + Parts_string2;
+        }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getLista();
+}, 20000); //2000mSeconds update rate
+
+
+</script>
+
+
+
+
+<script>
+
+
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getidCar();
+}, 5000); //2000mSeconds update rate
+
+
+
+
+</script>
+
+
+
+
+  //SpiRamJsonDocument doc(393216);
+    //ReadBufferingStream bufferingStream(http.getStream(), 1024);
+    
+    //DeserializationError error=deserializeJson(doc, bufferingStream);
+  /*StaticJsonDocument<4096> doc;
+
+ DeserializationError error = deserializeJson(doc, http.getStream());
+    */
+
+
+
+
+
+
+    <script>
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getMake();
+}, 2000); //2000mSeconds update rate
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getProtocolo();
+}, 2000); //2000mSeconds update rate
+
+
+</script>
+
+
+
+
+<script>
+
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getPIDS();
+},2000); //2000mSeconds update rate
+
+
+</script>
+
+
+
+
+void textFromHexString(char *hex, char *result)
+{
+    char temp[3];
+    int index = 0;
+    temp[2] = '\0';
+    while (hex[index])
+    {
+        strncpy(temp, &hex[index], 2);
+        *result = (char)strtol(temp, NULL, 16);     // If representations are hex
+        result++;
+        index += 2;
+        
+    }
+    *result = '\0';
+}
+
+
+
+void hextostr(String VINHEX){
+
+HTTPClient http;
+ Serial.println(VINHEX);
+ http.useHTTP10(true);
+ Serial.println();Serial.println();Serial.println();
+
+ 
+  String serverPath = serverName17+VINHEX;
+ 
+  Serial.println();
+  Serial.println(serverPath);
+ 
+  http.begin(serverPath.c_str());
+ 
+  Serial.println(" VIN PARSER HEX TO ASCII");
+
+  int httpResponseCode = http.GET();
+  Serial.print("httpResponseCode:  ");
+  Serial.println(httpResponseCode);
+    
+  if (httpResponseCode > 0)
+  {
+      String payload = http.getString();
+    Serial.println(payload);
+    StaticJsonDocument<32> doc;
+
+DeserializationError error = deserializeJson(doc, payload);
+
+if (error) {
+  Serial.print(F("deserializeJson() failed: "));
+  Serial.println(error.f_str());
+  return;
+}
+
+const char* root = doc.as<const char*>();
+Serial.print("VIN HEX TO ASCII: ");
+  Serial.println(root);
+
+
+}
+}
+
+
+
+
+String hexToString(String hex)
+{
+
+String text = "";
+
+for(int k=0;k< hex.length();k++)
+
+{
+
+if(k%2!=0)
+
+{
+
+char temp[3];
+
+sprintf(temp,"%c%c",hex[k-1],hex[k]);
+
+int number = (int)strtol(temp, NULL, 16);
+
+text+=char(number);
+
+}
+} 
+
+return text;
+}
+
+
+
+
+
+
+void JsonEuroParts2(String mensaje)
+{
+  HTTPClient http4;
+
+  String serverPath = serverName7 + mensaje + "'";
+  http4.begin(serverPath.c_str());
+
+  // Send HTTP GET request
+  int httpResponseCode = http4.GET();
+
+  if (httpResponseCode > 0)
+  {
+
+    // Serial.println(httpResponseCode);
+    String payload = http4.getString();
+    //Serial.println(payload);
+    
+    StaticJsonDocument<512> doc;
+
+    DeserializationError error = deserializeJson(doc, payload);
+
+    if (error)
+    {
+
+      Serial.print(F("deserializeJson() failed: "));
+      Serial.println(error.f_str());
+      return;
+    }
+
+    JsonObject root_0 = doc[0];
+
+    const char *libelle = root_0["libelleproduit"];
+    const char *precio = root_0["prixeuroht"];
+
+    Serial.print("Descripcion: ");
+    Serial.print(String(libelle));
+    Serial.print("     Precio : ");
+    Serial.print(String(precio));
+    Serial.println("€"); 
+
+    mensajeW = mensajeW + ("<tr><td>" + (String(libelle)) + " </td></tr><tr><td>" + precio + "€" + "</td></tr> ");
+
+   ref_euro = true;
+   Solucion_Euro = mensaje;
+  }
+  http4.end();
+}
+
+void JsonEuroParts(String mensaje)
+{
+  HTTPClient http4;
+
+  String serverPath = serverName6 + mensaje + "'";
+  http4.begin(serverPath.c_str());
+
+  // Send HTTP GET request
+  int httpResponseCode = http4.GET();
+
+  if (httpResponseCode > 0)
+  {
+
+    // Serial.println(httpResponseCode);
+    String payload = http4.getString();
+    //Serial.println(payload);
+  
+    StaticJsonDocument<512> doc;
+
+    DeserializationError error = deserializeJson(doc, payload);
+
+    if (error)
+    {
+
+      Serial.print(F("deserializeJson() failed: "));
+      Serial.println(error.f_str());
+      return;
+    }
+
+    for (JsonObject elem : doc.as<JsonArray>())
+    {
+      
+      Serial.print(" Referencia OEM: ");
+      Serial.print(mensaje);
+      Serial.print(" Referencia Euro4x4 : ");
+      const char *REF_EURO = elem["REF_EURO"];
+      String REF_EURO2 = String(REF_EURO);
+
+      Serial.println(String(REF_EURO));
+      String familia = (String(REF_EURO).substring(0, 3));
+
+      familia.toLowerCase();
+      REF_EURO2.toLowerCase();
+
+      mensajeW = mensajeW+("<tr><td><img class='circle' src='http://blog.euro4x4parts.com/photos/" + familia + "/" + String(REF_EURO2) + "z.jpg' width='120px' height='120px'></td></tr><tr><td>" + mensaje + "</td></tr><tr><td>" + String(REF_EURO) + "</td></tr>");
+      JsonEuroParts2(String(REF_EURO));
+      ////////////////////////
+      REF_EURO = "";
+      ///////////////////////
+    }
+  }
+  http4.end();
+}
+
+
+
+
+
+$statement=$pdo->prepare("SELECT DISTINCT  GROUP_CONCAT(distinct manufacturers.Description,'|',REPLACE(article_oe.OENbr, ' ', '' ) ) AS parts
+FROM article_links
+inner JOIN article_oe ON article_oe.supplierid = article_links.supplierid AND article_oe.datasupplierarticlenumber = article_links.datasupplierarticlenumber
+inner JOIN prd ON prd.id = article_links.productid
+inner JOIN manufacturers ON manufacturers.id = article_oe.manufacturerId
+WHERE article_links.linkageid='$carid' and article_links.linkagetypeid='2' AND prd.assemblygroupdescription = '$group' AND prd.normalizeddescription = '$ref' AND prd.description = '$crossref' ");
+$statement->execute();
+
+
+
+
+
+// $statement=$pdo->prepare("SELECT DISTINCT  substring_index(GROUP_CONCAT(distinct manufacturers.Description,'|',REPLACE(article_oe.OENbr, ' ', '' ) ),',',180) AS parts

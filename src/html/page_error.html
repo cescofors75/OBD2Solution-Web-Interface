@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+
+
+<head>
+ <style>
+     
+tbody tr:nth-child(odd) {
+  background-color: #f0f4fc;
+  font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e3e5e8;
+  font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+.content{
+
+    max-width: 100%;
+    margin: auto;
+  }
+  .card{
+      font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+      max-width: 100%;
+       min-height: 160px;
+       
+       background: #0063b1;
+
+       padding: 10px;
+       box-sizing: border-box;
+       color: #FFF;
+       margin:10px;
+       box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
+  }
+  .card2{
+      font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+      max-width: 100%;
+       min-height: 160px;
+       background: #000000;
+       padding: 10px;
+       box-sizing: border-box;
+       color: #FFF;
+       margin:10px;
+       box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
+  }
+  .card3{
+      font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+      max-width: 100%;
+       min-height: 160px;
+       background: white;
+       color: navy;
+       padding: 10px;
+       box-sizing: border-box;
+       font-size: 16px;
+       margin:10px;
+       box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
+  }
+  .info{
+      font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+      max-width: 100%;
+       min-height: 160px;
+       background: #FFF;
+       padding: 10px;
+       box-sizing: border-box;
+       color: #000;
+       margin:10px;
+       box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
+       
+ 
+  }
+  
+ 
+
+
+  
+
+.test {
+      text-decoration: none;
+
+    }
+.button3 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;  
+  background-color: #bd0416; /* red */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  
+  font-size: 20px;
+}
+</style>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+  
+<script type="text/javascript">
+
+    function getMake() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("MakeValue").innerHTML =
+        this.responseText;
+          }
+         };
+       xhttp.open("GET", "/readMake", true);
+       xhttp.send();
+      }
+     
+    
+
+   function getInfo(){
+      
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("InfoValue").innerHTML =
+        this.responseText;
+          }
+         };
+       xhttp.open("GET", "/readError", true);
+       xhttp.send();
+      }
+
+     
+function getidCar(){
+      
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("idCar").innerHTML =
+        this.responseText;
+          }
+         };
+       xhttp.open("GET", "/idCar", true);
+       xhttp.send();
+      }
+
+
+
+
+
+
+
+
+
+
+
+   
+</script>
+
+<script>
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getMake();
+}, 2000); //2000mSeconds update rate
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getInfo();
+}, 2000); //2000mSeconds update rate
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getidCar();
+}, 2000); //2000mSeconds update rate
+
+
+
+</script>
+
+
+   
+
+</head>
+
+
+
+
+
+<body>
+<div class="page">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OBD2Solution</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Errores <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li class="active"><a href="/pageDtcs">Ver Errores</a></li>
+          <li><a href="/pageDtcs">Buscar Solución</a></li>
+          <li><a href="/ClearDTC">Borrar Errores</a></li>
+        </ul>
+      </li>
+      <li><a href="/pageGauges">Displays</a></li>
+      <li><a href="/pageParts">Catalogo</a></li>
+	  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Lenguajes <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Frances</a></li>
+          <li><a href="#">Ingles</a></li>
+          <li><a href="#">Castellano</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="info"> 
+<div class="card">
+  <h2><span id="MakeValue">Loading Info </span></h2>
+</div>
+</div>
+
+
+
+
+
+<div class="info">
+<div class="card2">
+ <h2><span id="InfoValue">Loading Errors </span></h2>
+ </div>
+ </div> 
+ )=====";
+ 
+ 
+ const char PAGE_Error_2[] PROGMEM = R"=====(
+<div class="info">
+<div class="card3">
+ <h2><span id="idCar">LOADING.. </span></h2>
+  </div>
+ </div>
+ <div class="info">
+    <div class="card3">
+        <br><br>
+ <a href="https://api.whatsapp.com/send?phone=34618900003&text="
+ target="_blank"; style=" font-family: sans-serif; 
+ text-decoration: none; margin: 1em auto; color: #fff; 
+ font-size: 0.9em; padding: 1em 2em 1em 3.5em; border-radius: 2em; 
+ font-weight: bold; 
+ background: #25d366 url('https://tochat.be/click-to-chat-directory/css/whatsapp.svg') no-repeat 1.5em center; 
+ background-size: 1.6em;">Contacto con tu Profesional</a>
+</div>
+
+</div>
+</div>
+</body>
+</html>

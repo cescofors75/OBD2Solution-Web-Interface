@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+tbody tr:nth-child(odd) {
+  background-color: #f0f4fc;
+  font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e3e5e8;
+  font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+.content{
+
+    max-width: 100%;
+    margin: auto;
+  }
+  .card{
+      font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+      max-width: 100%;
+       min-height: 160px;
+       
+       background: #0063b1;
+
+       padding: 10px;
+       box-sizing: border-box;
+       color: #FFF;
+       margin:10px;
+       box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
+  }
+  .card2{
+      font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+      max-width: 100%;
+       min-height: 160px;
+       background: #000000;
+       padding: 10px;
+       box-sizing: border-box;
+       color: #FFF;
+       margin:10px;
+       box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
+  }
+  .card3{
+      font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+      max-width: 100%;
+       min-height: 160px;
+       background: white;
+       color: navy;
+       padding: 10px;
+       box-sizing: border-box;
+       font-size: 16px;
+       margin:10px;
+       box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
+  }
+  .info{
+      font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+      max-width: 100%;
+       min-height: 160px;
+       background: #FFF;
+       padding: 10px;
+       box-sizing: border-box;
+       color: #000;
+       margin:10px;
+       box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
+  }
+  
+ 
+
+
+  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+  
+ <script>
+ $(function() {
+ $('#tabs').tabs();
+ });
+ </script>
+
+<script type="text/javascript">
+
+    function getMake() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("MakeValue").innerHTML =
+        this.responseText;
+          }
+         };
+       xhttp.open("GET", "readMake", true);
+       xhttp.send();
+      }
+     
+    function getPIDS(){
+      
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("PIDSValue").innerHTML =
+        this.responseText;
+          }
+         };
+       xhttp.open("GET", "readPIDS", true);
+       xhttp.send();
+      }
+     
+
+      
+
+   
+
+   
+</script>
+
+   
+
+  </head>
+
+
+
+
+
+<body>
+<div class="page">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OBD2Solution</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Errores <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/pageDtcs">Ver Errores</a></li>
+          <li><a href="/pageDtcs">Buscar Solución</a></li>
+          <li><a href="/ClearDTC">Borrar Errores</a></li>
+        </ul>
+      </li>
+      <li><a href="/pageGauges">Displays</a></li>
+      <li><a href="/pageParts">Catalogo</a></li>
+	  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Lenguajes <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Frances</a></li>
+          <li><a href="#">Ingles</a></li>
+          <li><a href="#">Castellano</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="info"> 
+<div class="card">
+  <h2><span id="MakeValue">LOADING</span></h2>
+</div>
+</div>
+
+
+<script>
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getMake();
+}, 2000); //2000mSeconds update rate
+
+
+</script>
+
+
+
+<div id="tabs">
+<ul>
+ <li><a href="#tabs-1">ENGINE</a></li>
+ <li><a href="#tabs-2">AIR / FUEL </a></li>
+ <li><a href="#tabs-3">TEMP</a></li>
+ <li><a href="#tabs-4">SPEED / TIME</a></li>
+ <li><a href="#tabs-5">DRIVER</a></li>
+ <li><a href="#tabs-6">ELECTRIC SYSTEMS</a></li>
+ </ul>
+<div id="tabs-1">
+<span id="PIDSValue">LOADING</span>
+
+ </div>
+ <div id="tabs-2">
+ <p>PID_COOLANT_TEMP – Engine coolant temperature (°C)</p>
+ <p>PID_ENGINE_OIL_TEMP – Engine oil temperature (°C)</p>
+ </div>
+ <div id="tabs-3">
+ <p>PID_INTAKE_TEMP – Intake temperature (°C)</p>
+ <p>PID_INTAKE_PRESSURE – Intake manifold absolute pressure (kPa)</p>
+ <p>PID_MAF_FLOW – MAF flow pressure (grams/s)</p>
+ <p>PID_BAROMETRIC – Barometric pressure (kPa)</p>
+ </div>
+ <div id="tabs-4">
+ <p>PID_SPEED – Vehicle speed (km/h)</p>
+ <p>PID_RUNTIME – Engine running time (second)</p>
+ <p>PID_DISTANCE – Vehicle running distance (km)</p>
+ </div>
+ <div id="tabs-5">
+ <p>PID_THROTTLE – Throttle position (%)</p>
+ <p>PID_AMBIENT_TEMP – Ambient temperature (°C)</p>
+ </div>
+ <div id="tabs-6">
+ <p>PID_CONTROL_MODULE_VOLTAGE</p>
+ <p>PID_HYBRID_BATTERY_PERCENTAGE</p>
+ </div>
+</div>
+<script> $('#linkToTab3').click(function() { 
+ // To get the index of the currently selected Tab ;
+// var index = $('#tabs').data('tabs').options.selected; ;
+// alert('selected tab = ' + index); ;
+// To set the index of the tab to be selected ;
+$('#tabs').tabs('select', 2); }); </script>
+
+<script>
+
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getPIDS();
+},2000); //2000mSeconds update rate
+
+
+</script>
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,887 @@
+/* PROTO_ISO_9141_2 = 3,
+    PROTO_KWP2000_5KBPS = 4,
+    PROTO_KWP2000_FAST = 5,
+    PROTO_CAN_11B_500K = 6,
+    PROTO_CAN_29B_500K = 7,
+    PROTO_CAN_29B_250K = 8,
+    PROTO_CAN_11B_250K = 9,*/
+
+    /*void Buscar_Protocolo3(){
+
+ if (obd.init())
+    {
+      Serial.println("OK");
+      Serial.println();
+      connected = true;
+      Serial.print("Fase 1 - Leemos VIN: ");
+      leer_vin();
+     
+      Serial.println(VIN);
+      
+    }
+    else
+    {
+      Serial.println();
+    }
+    digitalWrite(PIN_LED, LOW);
+    return;
+
+
+}*/
+/* PROTO_ISO_9141_2 = 3,
+    PROTO_KWP2000_5KBPS = 4,
+    PROTO_KWP2000_FAST = 5,
+    PROTO_CAN_11B_500K = 6,
+    PROTO_CAN_29B_500K = 7,
+    PROTO_CAN_29B_250K = 8,
+    PROTO_CAN_11B_250K = 9,*/
+/*
+void Buscar_Protocolo2()
+{ 
+
+    Serial.println("PROTO_KWP2000_FASTConectando");
+    S_Obd_protocol="PROTO_KWP2000_FAST Connecting ";
+    if (obd.init(PROTO_KWP2000_FAST) )
+    {
+      S_Obd_protocol="PROTO_KWP2000_FAST OK !!";
+      Serial.println("PROTO_KWP2000_FAST OK");
+      Serial.println();
+      connected = true;
+      Serial.print("Fase 1 - Leemos VIN: ");
+      leer_vin();
+     
+      Serial.println(VIN);
+      return;
+    }
+    
+      
+      delay(1500);
+      Serial.println("PROTO_KWP2000_5KBPS Conectando");
+      S_Obd_protocol="PROTO_KWP2000_5KBPS Connecting ";
+          if (obd.init(PROTO_KWP2000_5KBPS))
+          {
+      S_Obd_protocol="PROTO_KWP2000_5KBPS OK !!";
+      Serial.println("PROTO_KWP2000_5KBPS OK");
+      Serial.println();
+      connected = true;
+      Serial.print("Fase 1 - Leemos VIN: ");
+      leer_vin();
+     
+      Serial.println(VIN);
+      return;
+        }
+    
+    delay(1500);
+    Serial.println("PROTO_CAN_11B_500K Conectando");
+    S_Obd_protocol="PROTO_CAN_11B_500K Connecting ";
+          if (obd.init(PROTO_CAN_11B_500K))
+          {
+      S_Obd_protocol="PROTO_CAN_11B_500K OK !!";
+      Serial.println("PROTO_CAN_11B_500K OK");
+      Serial.println();
+      connected = true;
+      Serial.print("Fase 1 - Leemos VIN: ");
+      leer_vin();
+     
+      Serial.println(VIN);
+       return;
+        }
+   
+      delay(1500);
+      Serial.println("PROTO_CAN_29B_500K Conectando");
+    S_Obd_protocol="PROTO_CAN_29B_500K Connecting ";
+          if (obd.init(PROTO_CAN_29B_500K))
+        {
+      S_Obd_protocol="PROTO_CAN_29B_500K OK !!";
+      Serial.println("PROTO_CAN_29B_500K OK");
+      Serial.println();
+      connected = true;
+      Serial.print("Fase 1 - Leemos VIN: ");
+      leer_vin();
+     
+      Serial.println(VIN);
+       return;
+        }
+   
+      delay(1500);
+      Serial.println("PROTO_CAN_29B_250K Conectando");
+    S_Obd_protocol="PROTO_CAN_29B_250K Connecting ";
+          if (obd.init(PROTO_CAN_29B_250K))
+         {
+      S_Obd_protocol="PROTO_CAN_29B_250K OK !!";
+      Serial.println("PROTO_CAN_29B_250K OK");
+      Serial.println();
+      connected = true;
+      Serial.print("Fase 1 - Leemos VIN: ");
+      leer_vin();
+     
+      Serial.println(VIN);
+       return;
+       }
+    
+      delay(1500);
+      Serial.println("PROTO_CAN_11B_250K Conectando");
+     S_Obd_protocol="PROTO_CAN_11B_250K Connecting ";
+          if (obd.init(PROTO_CAN_11B_250K))
+         {
+      S_Obd_protocol="PROTO_CAN_11B_250K OK !!";
+      Serial.println("PROTO_CAN_11B_250K OK");
+      Serial.println();
+      connected = true;
+      Serial.print("Fase 1 - Leemos VIN: ");
+      leer_vin();
+     
+      Serial.println(VIN);
+       return;
+      }
+   
+       delay(1500);
+      Serial.println("PROTO_ISO_9141_2 Conectando");
+    S_Obd_protocol="PROTO_ISO_9141_2 Connecting ";
+          if (obd.init(PROTO_ISO_9141_2))
+        {
+      S_Obd_protocol="PROTO_ISO_9141_2 OK !!";
+      Serial.println("PROTO_ISO_9141_2 OK");
+      Serial.println();
+      connected = true;
+      Serial.print("Fase 1 - Leemos VIN: ");
+      leer_vin();
+     
+      Serial.println(VIN);
+       return;
+        }
+        
+        
+        
+         delay(1500);
+      Serial.println("PROTO_AUTO Conectando");
+       S_Obd_protocol="PROTO_AUTO Connecting ";
+          if (obd.init(PROTO_AUTO))
+          {
+              S_Obd_protocol="PROTO_AUTO OK !!";
+              Serial.println("PROTO_AUTO OK");
+              Serial.println();
+              connected = true;
+              Serial.print("Fase 1 - Leemos VIN: ");
+              leer_vin();
+              Serial.println(VIN);
+            return;
+        }
+                delay(500);
+                S_Obd_protocol="Reconnecting  !!";
+                Serial.println("RE - Conectamos ");
+          }
+     
+     
+
+*/
+  
+
+  /*
+void DecoderVin(String vin)
+{
+
+  HTTPClient http2;
+  http2.useHTTP10(true);
+  String serverPath = serverName2 + vin + "&getMoreData";
+  http2.begin(serverPath.c_str());
+
+  // Send HTTP GET request
+  int httpResponseCode = http2.GET();
+
+  if (httpResponseCode > 0)
+  {
+    Serial.println("Fase 2 - VINDECODER : ");
+    //Serial.println(httpResponseCode);
+    //String payload = http2.getString();
+     
+    DynamicJsonDocument doc(1024);
+     DeserializationError error = deserializeJson(doc, http2.getStream());
+    ////////////////////////////////
+
+   
+   //ReadBufferingStream bufferedFile(payload, 64);
+   //DeserializationError error = deserializeJson(doc, bufferedFile);
+
+
+
+    if (error)
+    {
+      Serial.print(F("deserializeJson() failed: "));
+      Serial.println(error.f_str());
+      return;
+    }
+
+    int data_array_0_carId = doc["data"]["array"][0]["carId"]; // 5697
+
+    JsonObject data_array_0_vehicleDetails = doc["data"]["array"][0]["vehicleDetails"];
+   
+    const char *data_array_0_vehicleDetails_fuelType = data_array_0_vehicleDetails["fuelType"]; // "Diesel"
+   
+    const char *data_array_0_vehicleDetails_manuName = data_array_0_vehicleDetails["manuName"]; // "TOYOTA"
+    
+    const char *data_array_0_vehicleDetails_modelName = data_array_0_vehicleDetails["modelName"]; // "LAND ...
+  
+    const char *data_array_0_vehicleDetails_typeName = data_array_0_vehicleDetails["typeName"]; // "3.0 TD ...
+    
+    long data_array_0_vehicleDetails_yearOfConstrFrom = data_array_0_vehicleDetails["yearOfConstrFrom"];
+  
+    idCar = data_array_0_carId;
+    Make = data_array_0_vehicleDetails_manuName;
+    Model = data_array_0_vehicleDetails_modelName;
+    Year = data_array_0_vehicleDetails_yearOfConstrFrom;
+
+    Year = Year.substring(0, 4);
+    Version = data_array_0_vehicleDetails_typeName;
+    Fuel = data_array_0_vehicleDetails_fuelType;
+  }
+
+  // Free resources
+  http2.end();
+
+  Serial.print("Marca: ");
+  Serial.println(Make);
+  Serial.print("Modelo: ");
+  Serial.println(Model);
+  Serial.print("Year: ");
+  Serial.println(Year);
+  Serial.print("Version: ");
+  Serial.println(Version);
+  Serial.print("Combustible: ");
+  Serial.println(Fuel);
+  Serial.println();
+}
+
+*/
+
+
+
+void Grabar_ThingSpeak()
+{
+/*
+  digitalWrite(PIN_LED, HIGH);
+
+  ThingSpeak.setField(1, RPM);
+  ThingSpeak.setField(2, SPEED);
+  ThingSpeak.setField(3, VOLTAGE);
+  ThingSpeak.setField(4, FUELLEVEL);
+  ThingSpeak.setField(5, VIN);
+  ThingSpeak.setField(6, dtcCount);
+  ThingSpeak.setField(7, TEMPAGUA);
+  ThingSpeak.setField(8, TEMPOIL);
+  Serial.println();
+  Serial.println("Fase 4 -  Recopilando datos para enviar ThingSpeak ");
+
+  String Status_texte2 = ("OBD CONECTADO-");
+  String Status_texte3 = (" VIN: " + String(VIN));
+  String Status_texte4 = (" Marca/Fabricante " + Make + " Modelo " + Model + " Year " + Year);
+  String Status_texte5 = (" Version " + Version + " FUEL " + Fuel + " DOORS " + Doors);
+  String Status_texte = Status_texte2 + Status_texte3 + Status_texte4 + Status_texte5;
+
+  String error_texte;
+
+  if (dtcCount == 0)
+  {
+
+    Status_texte = (Status_texte + "..NO ERRORES DTC:");
+    ThingSpeak.setStatus(Status_texte);
+  }
+  else
+  {
+
+    error_texte = (".. CODIGO DE ERRORES :   P0" + String(codes[0], HEX));
+    for (int index_er = 1; index_er < dtcCount; index_er++)
+    {
+      error_texte = error_texte + (" , P0" + String(codes[index_er], HEX));
+    }
+
+    Status_texte = Status_texte + error_texte;
+    ThingSpeak.setStatus(Status_texte);
+  }
+
+  Serial.println(Status_texte);
+  Serial.print("FUEL LEVEL:");
+  Serial.println(FUELLEVEL);
+  Serial.print("VOLTAGE   :");
+  Serial.println(VOLTAGE);
+  Serial.print("TEMP H2O  :");
+  Serial.println(TEMPAGUA);
+  Serial.print("TEMP OIL  :");
+  Serial.println(TEMPOIL);
+
+  ThingSpeak.writeFields(channelID, WriteAPIKey);
+  Serial.println("Datos enviados a ThingSpeak!");
+  Serial.println();
+  // Finalizacion de grabar_datos();
+
+  digitalWrite(PIN_LED, LOW);*/
+}
+/*
+void OpenAI()
+{
+
+  HTTPClient http5;
+  http5.useHTTP10(true);
+  String serverPath = "https://api.openai.com/v1/engines/davinci/completions ";
+  
+  //http5.setTimeout(50000);
+  http5.begin(serverPath.c_str());
+  
+  http5.addHeader("Content-Type", "application/json");
+  http5.addHeader("Authorization", "Bearer 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");
+  
+  //Serial.println(serverPath);
+  // Send HTTP GET request
+  String inicio_AI="{\"prompt\": \"";
+  String option_AI=",\"temperature\": 0.9,\"max_tokens\": 150,\"top_p\": 1,\"frequency_penalty\": 0,\"presence_penalty\": 0.6}";
+  
+  //int httpResponseCode = http5.POST(inicio_AI + "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.  Hello. My name is Toyota Landcruiser. I have an error code P01001. Do you have the solution to my problem?\"" + option_AI); 
+  // int httpResponseCode = http5.POST(inicio_AI + InfoValue + option_AI); 
+   int httpResponseCode = http5.POST(inicio_AI + "La siguiente conversacion con  un AI asistente. El Asistente es amigable y educado. EL coche le dice al asistente : Hola buenos dias, tengo un Toyota Landcruiser del año 2001, con un error con el codigo P01001, y creo que la solucion es cambiar el debimetro y comprarlo en Euro4x4parts o en Japocat, que piensa la AI? \"" + option_AI); 
+
+  //Serial.println(httpResponseCode);
+
+  if (httpResponseCode > 0)
+  {
+
+    
+    //String payload = http5.getString();
+    //Serial.println(payload);
+     
+    DynamicJsonDocument doc(2048);
+    DeserializationError error = deserializeJson(doc, http5.getStream());
+
+if (error) {
+  Serial.print(F("deserializeJson() failed: "));
+  Serial.println(error.f_str());
+  return;
+}
+
+
+
+JsonObject choices_0 = doc["choices"][0];
+const char* choices_0_text = choices_0["text"]; // " Would you like to talk to an AI assistant like ...
+
+Texto_OpenAI=String(choices_0_text);
+Texto_OpenAI.replace("\n","<br>");
+Serial.println(choices_0_text);
+ delay(1000);
+  }
+
+
+  
+ 
+  http5.end();
+
+}*/
+
+
+
+
+
+void grabar_datos_mysql()
+{
+  //Check WiFi connection status
+  if (WiFi.status() == WL_CONNECTED)
+  {
+    HTTPClient http;
+
+    // Your Domain name with URL path or IP address with path
+    http.begin(serverName3);
+
+    // Specify content-type header
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // Prepare your HTTP POST request data
+    String httpRequestData = "api_key=" + apiKeyValue + "&sensor=" + VIN + "&location=" + Make + "&value1=" + SPEED + "&value2=" + RPM + "&value3=" + VOLTAGE + "";
+
+    // Send HTTP POST request
+    int httpResponseCode = http.POST(httpRequestData);
+
+    // If you need an HTTP request with a content type: text/plain
+    //http.addHeader("Content-Type", "text/plain");
+    //int httpResponseCode = http.POST("Hello, World!");
+
+    // If you need an HTTP request with a content type: application/json, use the following:
+    //http.addHeader("Content-Type", "application/json");
+    //int httpResponseCode = http.POST("{\"value1\":\"19\",\"value2\":\"67\",\"value3\":\"78\"}");
+
+    if (httpResponseCode > 0)
+    {
+      Serial.println("Grabando datos servidors mySql: ");
+      Serial.print("HTTP Response code: ");
+      Serial.println(httpResponseCode);
+      Serial.println("Datos Guardados  ");
+    }
+    else
+    {
+      Serial.print("Error code: ");
+      Serial.println(httpResponseCode);
+    }
+    // Free resources
+    http.end();
+  }
+  else
+  {
+    Serial.println("WiFi Disconnected");
+  }
+  
+}
+
+
+
+void loop()
+{
+
+  // put your main code here, to run repeatedly:
+
+  if (VIN_MANU != "")
+  {
+    VIN_MANU.toCharArray(VIN, 18);
+  }
+  else
+  {
+
+    if (!connected)
+    {
+
+      Serial.println("Conexion    OBDII ---> ");
+
+      Buscar_Protocolo();
+
+      digitalWrite(PIN_LED, LOW);
+      return;
+    }
+  }
+  //leer_vin();
+  dtcCount = obd.readDTC(codes, 6);
+  leer_pids();
+  leer_pids2();
+  // if (obd.errors >= 2) {Serial.println("OBD Desconectado");connected = false;obd.reset();}
+
+  //Nuevo_VIN(); // Miramos si hay un nuevo vin ??
+
+  //if (timing<90){timing++; }else{
+
+  //Serial.println();
+  //grabar_datos_mysql();
+  //Grabar_ThingSpeak();
+  // timing=0;}//  Es el timming para Thing Speak Serial.println(timing);
+
+  /////////////////////////
+  //if (obd.errors >= 2) {Serial.println("OBD Desconectado");connected = false;obd.reset();}//  si hay errores de concexion OBD II ... Re-conectar.
+  ////////////////////////
+  digitalWrite(PIN_LED, HIGH);
+  digitalWrite(PIN_LED, HIGH);
+  digitalWrite(PIN_LED, LOW);
+  digitalWrite(PIN_LED, LOW);
+  digitalWrite(PIN_LED, HIGH);
+  digitalWrite(PIN_LED, HIGH);
+  digitalWrite(PIN_LED, LOW);
+  digitalWrite(PIN_LED, LOW);
+  //delay(500);
+}
+
+
+
+
+
+
+
+const char MAIN_page[] PROGMEM = R"=====(
+<!DOCTYPE html>
+<html>
+<head>
+  
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1 ">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://192.168.50.12/obd_style.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+ <script>
+ $(function() {
+ $('#tabs').tabs();
+ });
+ </script>
+
+
+
+
+<script type="text/javascript">
+
+
+
+    
+    function getProtocolo() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("Protocolo").innerHTML =
+        this.responseText;
+          }
+         };
+       xhttp.open("GET", "/readProtocolo", true);
+       xhttp.send();
+      }
+
+    function getMake() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("MakeValue").innerHTML =
+        this.responseText;
+          }
+         };
+       xhttp.open("GET", "/readMake", true);
+       xhttp.send();
+      }
+     
+    function getPIDS(){
+      
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("PIDSValue").innerHTML =
+        this.responseText;
+          }
+         };
+       xhttp.open("GET", "/readPIDS", true);
+       xhttp.send();
+      }
+     
+      function getPIDS2(){
+      
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("PIDSValue2").innerHTML =
+        this.responseText;
+          }
+         };
+       xhttp.open("GET", "/readPIDS2", true);
+       xhttp.send();
+      }
+
+       function getTop(){
+      
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("reftop").innerHTML =
+        this.responseText;
+          }
+         };
+       xhttp.open("GET", "/readTop", true);
+       xhttp.send();
+      }
+     
+      
+
+   
+
+   
+</script>
+
+<style>
+img:hover {
+  opacity: 0.6;
+  
+
+}
+</style> 
+
+</head>
+
+
+
+
+
+<body>
+<div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    <script>
+        $(window).on("load",function(){
+          $(".loader-wrapper").fadeOut("slow");
+        });
+    </script>
+    
+<div class="page">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">OBD2Solution</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Codes <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/pageDtcs">List codes</a></li>
+          <li><a href="/pageSolution">Codes - Solution</a></li>
+          <li><a href="/ClearDTC">Clear codes</a></li>
+          
+          
+
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Table Codes <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/pageList">Standard codes</a></li>
+          <li><a href="/pageListF">Ford codes</a></li>
+          <li><a href="/pageListH">Honda codes</a></li>
+          <li><a href="/pageListT">Toyota codes</a></li>
+          <li><a href="/pageListC">Jeep-Chrysler codes</a></li>
+          <li><a href="/pageListG">General Motors codes</a></li>
+
+        </ul>
+      </li>
+      <li><a href="/pageGauges">Displays</a></li>
+      
+      
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">VIN <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+      
+      <li><a href="/pageVin">Enter VIN number</a></li>
+      <li><a href="/pageAVin">Automatic VIN</a></li>
+      
+      
+	    </ul>
+      </li>
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Catalogue-Parts <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+      <li><a href="/pageParts">Catalogue VIN</a></li>
+      <li><a href="/pageParts2">Catalologue ALL</a></li>
+      </ul>
+      </li>
+
+     
+     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Lang <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">FR</a></li>
+          <li><a href="#">EN</a></li>
+          <li><a href="#">ES</a></li>
+        </ul>
+      </li>
+    
+      
+     
+    </ul>
+  </div>
+</nav>
+
+<div class="info" style="font-family : 'JetBrains Mono';">
+<table><tr><td>
+<h3><span id="Protocolo">Waiting ...</span></h3>
+
+</td></tr>
+
+</table>
+
+<div class="card" style="font-family : 'JetBrains Mono';" >
+  <h3><span id="MakeValue">Waiting ...</span></h3>
+</div>
+
+
+
+<table><tr><td>
+
+<div id="tabs" style="font-family : 'JetBrains Mono';">
+<ul>
+ <li><a href="#tabs-1">COMMON</a></li>
+ <li><a href="#tabs-2">ADVANCED </a></li>
+
+ </ul>
+<div id="tabs-1">
+<div id="PIDSValue2" style="font-family : 'JetBrains Mono';">Waiting ...</div>
+
+ </div>
+ <div id="tabs-2">
+<div id="PIDSValue" style="font-family : 'JetBrains Mono';">Waiting ...</div>
+ </div>
+ 
+</div>
+<script> $('#linkToTab3').click(function() { 
+ // To get the index of the currently selected Tab ;
+// var index = $('#tabs').data('tabs').options.selected; ;
+// alert('selected tab = ' + index); ;
+// To set the index of the tab to be selected ;
+$('#tabs').tabs('select', 2); }); </script>
+
+
+</div>
+</td><td>
+<div id="reftop" style="font-family : 'JetBrains Mono';">Waiting ...
+</div>
+
+</td></tr></table>
+
+
+
+
+
+
+
+<div class="info">
+<div  style="display: inline-block;">
+<a href="/pageDtcs">
+<img src="http://192.168.50.12/buttons/read.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
+</div>
+<div  style="display: inline-block;">
+<a href="/pageSolution">
+<img src="http://192.168.50.12/buttons/solution.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
+</div>
+
+<div  style="display: inline-block;">
+<a href="#" data-toggle="modal" data-target="#exampleModal">
+<img src="http://192.168.50.12/buttons/clear.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       Are you sure you want to clear codes ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/ClearDTC'">Clear</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div  style="display: inline-block;">
+<a href="/pageGauges">
+<img src="http://192.168.50.12/buttons/live.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
+</div>
+<div  style="display: inline-block;">
+<a href="/pageVin">
+<img src="http://192.168.50.12/buttons/vin2.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
+</div>
+
+
+<div  style="display: inline-block;">
+<a href="/pageParts">
+<img src="http://192.168.50.12/buttons/cat3.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
+</div>
+
+
+</div>
+
+
+<div class="info">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" href="#exampleModal2">
+  Reset OBD2Solution
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       Are you sure you want to reset OBD2Solution ? 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/Reset'">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+ <script>
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getMake();
+}, 2000); //2000mSeconds update rate
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getProtocolo();
+}, 1000); //2000mSeconds update rate
+
+
+</script>
+
+
+
+
+<script>
+
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getPIDS();
+},2000); //2000mSeconds update rate
+
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+  getPIDS2();
+},200); //2000mSeconds update rate
+
+ 
+
+ getTop();
+
+</script>
+
+
+
+</body>
+</html>
+)=====";
+
+
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200&display=swap" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+board_build.f_cpu = 160000000L
+-DCORE_DEBUG_LEVEL=0 -Os
+	-D CONFIG_MDF_TASK_PINNED_TO_CORE=1
+	-D CONFIG_MDF_ERR_TO_NAME_LOOKUP=1
+	-D CONFIG_MDF_LOG_LEVEL=2
