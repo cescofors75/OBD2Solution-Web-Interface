@@ -12,7 +12,7 @@ const char PAGE_Top[] PROGMEM = R"=====(
  
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="http://192.168.50.12/obd_style.css">
+  <link rel="stylesheet" href="http://172.20.10.10/obd_style.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
@@ -157,16 +157,16 @@ img:hover {
 <div class="info">
 <div  style="display: inline-block;">
 <a href="/pageDtcs">
-<img src="http://192.168.50.12/buttons/read.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
+<img src="http://172.20.10.10/buttons/read.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
 </div>
 <div  style="display: inline-block;">
 <a href="/pageSolution">
-<img src="http://192.168.50.12/buttons/solution.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
+<img src="http://172.20.10.10/buttons/solution.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
 </div>
 
 <div  style="display: inline-block;">
 <a href="#" data-toggle="modal" data-target="#exampleModal">
-<img src="http://192.168.50.12/buttons/clear.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
+<img src="http://172.20.10.10/buttons/clear.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
 
 
 
@@ -193,17 +193,17 @@ img:hover {
 </div>
 <div  style="display: inline-block;">
 <a href="/pageGauges">
-<img src="http://192.168.50.12/buttons/live.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
+<img src="http://172.20.10.10/buttons/live.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
 </div>
 <div  style="display: inline-block;">
 <a href="/pageVin">
-<img src="http://192.168.50.12/buttons/vin2.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
+<img src="http://172.20.10.10/buttons/vin2.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
 </div>
 
 
 <div  style="display: inline-block;">
 <a href="/pageParts">
-<img src="http://192.168.50.12/buttons/cat3.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
+<img src="http://172.20.10.10/buttons/cat3.jpg" style="box-shadow: 0 0 15px #999;" width="120" height="120"></a>
 </div>
 
 

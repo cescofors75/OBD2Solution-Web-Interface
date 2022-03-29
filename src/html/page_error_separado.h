@@ -33,7 +33,7 @@ const char PAGE_Error_1[] PROGMEM = R"=====(
 }
 </style>
 
-<link rel="stylesheet" href="http://192.168.50.12/obd2style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://172.20.10.10/obd2style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all" />
   
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>

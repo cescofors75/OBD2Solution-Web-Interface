@@ -288,7 +288,7 @@ void Buscar_error()
   if (dtcCount == 0)
   {
 
-    Error += ("<img src='http://192.168.50.12/buttons/ok.jpg'  width='50' height='50'></td><td style='background: #03C04A ;color: white; padding: 15px;'>SYSTEM OK, NO CODES");
+    Error += ("<img src='http://172.20.10.10/buttons/ok.jpg'  width='50' height='50'></td><td style='background: #03C04A ;color: white; padding: 15px;'>SYSTEM OK, NO CODES");
     Articulo_a_buscar = "";
     mensajeW = "";
     //Limpieza();
@@ -301,7 +301,7 @@ void Buscar_error()
     if (Error_l.length() == 3)
     {
 
-      Error += (" <tr><td style='width:50px;'><img src='http://192.168.50.12/buttons/alert.jpg'  width='50' height='50'> </td><td style='background: white ;color: red; padding: 15px;'> P0" + String(codes[0], HEX));
+      Error += (" <tr><td style='width:50px;'><img src='http://172.20.10.10/buttons/alert.jpg'  width='50' height='50'> </td><td style='background: white ;color: red; padding: 15px;'> P0" + String(codes[0], HEX));
 
       Mirar_error(("P0" + String(codes[0], HEX)));
       
@@ -309,7 +309,7 @@ void Buscar_error()
 
     if (Error_l.length() == 4)
     {
-      Error += (" <tr><td style='width:50px;'><img src='http://192.168.50.12/buttons/alert.jpg'  width='50' height='50'> </td><td style='background: white ;color: red; padding: 15px;'> P" + String(codes[0], HEX));
+      Error += (" <tr><td style='width:50px;'><img src='http://172.20.10.10/buttons/alert.jpg'  width='50' height='50'> </td><td style='background: white ;color: red; padding: 15px;'> P" + String(codes[0], HEX));
 
       Mirar_error(("P" + String(codes[0], HEX)));
     }
@@ -318,7 +318,7 @@ void Buscar_error()
       String Error_l = String(codes[index_er], HEX);
       if (Error_l.length() == 3)
       {
-        Error += (" <tr><td style='width:50px;'><img src='http://192.168.50.12/buttons/alert.jpg'  width='50' height='50'> </td><td style='background: white ;color: red; padding: 15px;'> P0" + String(codes[index_er], HEX));
+        Error += (" <tr><td style='width:50px;'><img src='http://172.20.10.10/buttons/alert.jpg'  width='50' height='50'> </td><td style='background: white ;color: red; padding: 15px;'> P0" + String(codes[index_er], HEX));
 
         //Error = Error + ("P0" + String(codes[index_er], HEX));
         Mirar_error(("P0" + String(codes[index_er], HEX)));
@@ -326,7 +326,7 @@ void Buscar_error()
       if (Error_l.length() == 4)
       {
 
-        Error += (" <tr><td style='width:50px;'><img src='http://192.168.50.12/buttons/alert.jpg'  width='50' height='50'> </td><td style='background: white ;color: red; padding: 15px;'> P" + String(codes[index_er], HEX));
+        Error += (" <tr><td style='width:50px;'><img src='http://172.20.10.10/buttons/alert.jpg'  width='50' height='50'> </td><td style='background: white ;color: red; padding: 15px;'> P" + String(codes[index_er], HEX));
 
         // Error = Error + ("P" + String(codes[index_er], HEX));
         Mirar_error(("P" + String(codes[index_er], HEX)));
@@ -1285,7 +1285,7 @@ void handleMake(AsyncWebServerRequest *request)
   if (connected)
   {
     Serial.println("Actualizando Info del vehicle");
-    InfoValue = ("<table><tr style='color:#0063b1; padding: 15px; background:white ;'><td style='padding: 15px;'> <img src='http://192.168.50.12/buttons/images_carbrands/" + make2 + ".png' class='w3-left w3-circle w3-margin-right' style='width:40px'></td><td style='padding: 15px;'><h4>VIN: " + String(VIN) + "<br>" + "BRAND: " + Make + " - " + " MODEL: " + Model + " <br> " + " VERSION: " + Version + "<br>" + "YEAR: " + Year + " - " + " FUEL: " + Fuel + "</h4></td></tr></table>");
+    InfoValue = ("<table><tr style='color:#0063b1; padding: 15px; background:white ;'><td style='padding: 15px;'> <img src='http://172.20.10.10/buttons/images_carbrands/" + make2 + ".png' class='w3-left w3-circle w3-margin-right' style='width:40px'></td><td style='padding: 15px;'><h4>VIN: " + String(VIN) + "<br>" + "BRAND: " + Make + " - " + " MODEL: " + Model + " <br> " + " VERSION: " + Version + "<br>" + "YEAR: " + Year + " - " + " FUEL: " + Fuel + "</h4></td></tr></table>");
 
     request->send(200, "text/html", InfoValue); //Send ADC value only to client ajax request
   }

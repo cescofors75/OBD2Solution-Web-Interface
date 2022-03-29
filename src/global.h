@@ -12,37 +12,33 @@
 //*********************************************
 //const char* serverName  = "http://192.168.50.11/";
 //const char* serverName3  = "http://192.168.50.11/post-esp-data.php";
-const char* serverName6  = "http://192.168.50.12/php/mysql_json.php?REF='";
-const char* serverName7  = "http://192.168.50.12/php/mysql_json2.php?REF='";
-const char* serverName8  = "http://192.168.50.12/php/mysql_json3.php?CODIGO='";
-const char* serverName9  = "http://192.168.50.12/php/mysql_json4.php?CODIGO='";
-const char* serverName10 = "http://192.168.50.12/php/mysql_json5.php?carid=";
-const char* serverName11 = "http://192.168.50.12/php/mysql_json6.php?carid=";
-const char* serverName12 = "http://192.168.50.12/php/mysql_json7.php?carid=";
-const char* serverName13 = "http://192.168.50.12/php/mysql_json8.php?carid=";
-const char* serverName14 = "http://192.168.50.12/php/mysql_json9.php?carid=";
+const char* serverName6  = "http://172.20.10.10/php/mysql_json.php?REF='";
+const char* serverName7  = "http://172.20.10.10/php/mysql_json2.php?REF='";
+const char* serverName8  = "http://172.20.10.10/php/mysql_json3.php?CODIGO='";
+const char* serverName9  = "http://172.20.10.10/php/mysql_json4.php?CODIGO='";
+const char* serverName10 = "http://172.20.10.10/php/mysql_json5.php?carid=";
+const char* serverName11 = "http://172.20.10.10/php/mysql_json6.php?carid=";
+const char* serverName12 = "http://172.20.10.10/php/mysql_json7.php?carid=";
+const char* serverName13 = "http://172.20.10.10/php/mysql_json8.php?carid=";
+const char* serverName14 = "http://172.20.10.10/php/mysql_json9.php?carid=";
 //////////////////////////////////////////
-const char* serverName15 = "http://192.168.50.12/php/mysql_json10.php?make_code=";
-/*const char* serverName16 = "http://192.168.50.11/mysql_json11.php";
-const char* serverName17 = "http://192.168.50.11/mysql_json12.php";
-const char* serverName18 = "http://192.168.50.11/mysql_json13.php";
-const char* serverName19 = "http://192.168.50.11/mysql_json14.php";
-const char* serverName20 = "http://192.168.50.11/mysql_json15.php";*/
-const char* serverName21 = "http://192.168.50.12/php/mysql_jsonPART.php?carid=";
-const char* serverName22 = "http://192.168.50.12/php/mysql_jsonESP.php?carid=";
-const char* serverName23 = "http://192.168.50.12/php/mysql_jsonPART_OEM.php?carid=";
-const char* serverName24 = "http://192.168.50.12/mysql_jsonESP_SUPLIERS.php?carid=";
+const char* serverName15 = "http://172.20.10.10/php/mysql_json10.php?make_code=";
 
-//const char* serverName17 = "http://192.168.50.12/hextostr.php?hex=";
+const char* serverName21 = "http://172.20.10.10/php/mysql_jsonPART.php?carid=";
+const char* serverName22 = "http://172.20.10.10/php/mysql_jsonESP.php?carid=";
+const char* serverName23 = "http://172.20.10.10/php/mysql_jsonPART_OEM.php?carid=";
+const char* serverName24 = "http://172.20.10.10/mysql_jsonESP_SUPLIERS.php?carid=";
+
+//const char* serverName17 = "http://172.20.10.10/hextostr.php?hex=";
 
 
 String apiKeyValue = "tPmAT5Ab3j7F9";  //keyvalue mysql. 
 
-//const char* ssid = "iPhone de Francesc ";  // wifi movil 
-//const char* password = "gp5zoiqszdy9j";
+const char* ssid = "iPhone de Francesc ";  // wifi movil 
+const char* password = "gp5zoiqszdy9j";
 
-const char* ssid = "Acerko_X1_Oficina";   // wifi oficina
-const char* password = "02923451";
+//const char* ssid = "Acerko_X1_Oficina";   // wifi oficina
+//const char* password = "02923451";
 
 
 //const char* ssid = "MiFibra-8C6D";   // wifi oficina
