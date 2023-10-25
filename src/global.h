@@ -32,22 +32,22 @@ const char* serverName24 = "http://172.20.10.10/mysql_jsonESP_SUPLIERS.php?carid
 //const char* serverName17 = "http://172.20.10.10/hextostr.php?hex=";
 
 
-String apiKeyValue = "tPmAT5Ab3j7F9";  //keyvalue mysql. 
+String apiKeyValue = "";  //keyvalue mysql. 
 
-const char* ssid = "iPhone de Francesc ";  // wifi movil 
-const char* password = "gp5zoiqszdy9j";
+const char* ssid = "";  // wifi movil 
+const char* password = "";
 
-//const char* ssid = "Acerko_X1_Oficina";   // wifi oficina
-//const char* password = "02923451";
-
-
-//const char* ssid = "MiFibra-8C6D";   // wifi oficina
-//const char* password = "XHykCi7Z";
+//const char* ssid = "a";   // wifi oficina
+//const char* password = "1";
 
 
+//const char* ssid = "";   // wifi oficina
+//const char* password = "Z";
 
-unsigned long channelID = 1348494;                //ID de vuestro canal.
-const char* WriteAPIKey = "DRP4L796A9MHFCKA";     //Write API Key de vuestro canal.
+
+
+unsigned long channelID = ;                //ID de vuestro canal.
+const char* WriteAPIKey = "";     //Write API Key de vuestro canal.
 
 //*********************************************************************
 
